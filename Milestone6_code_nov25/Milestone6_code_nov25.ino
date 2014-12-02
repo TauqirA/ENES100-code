@@ -194,58 +194,6 @@ void turnTo(float turnDegrees) {
   else turnRight(turnDegrees);
 }
 
-//Algorithm to decide angle to travel at.
-float decideAngle(float x, float y) {
-  float desiredAngle = 0;
-  float n = 0;
-  //First four conditionals cover "buffer zones." If the Vehicle is within 166
-  //units of the wall, it tries to navigate away.
-  
-  //Buffer 1
-  if (x <= FIELD_LENGTH / 24) {
-    desiredAngle = desiredAngle + RIGHT;
-    n++;
-  }
-  //Buffer 2
-  if (y <= FIELD_HEIGHT / 12) {
-    desiredAngle = desiredAngle + UP;
-    n++;
-  }
-  //buffer 3
-  if (x >= FIELD_LENGTH * 23 / 24) {
-    desiredAngle = desiredAngle + LEFT;
-    n++;
-  }
-  //buffer 4
-  if (y >= FIELD_HEIGHT * 11 / 12) {
-    desiredAngle = desiredAngle + DOWN;
-    n++;
-  }
-  //Zone 1
-  
-  //THIS ZONE Is WRONG
-  else if (x > FIELD_LENGTH / 24 && y > FIELD_HEIGHT / 3 && x <= FIELD_LENGTH * 5 / 24) { 
-    desiredAngle += DOWN;
-    n++;
-  }
-  //Zone 2
-  else if (x > FIELD_LENGTH / 24 && y > FIELD_HEIGHT / 12 && x < FIELD_LENGTH * 23 / 24 && y <= FIELD_HEIGHT / 3) {
-    desiredAngle += RIGHT;
-    n++;
-  }
-  //Zone 3
-  else if (x > FIELD_LENGTH * 5 / 24 && x <= FIELD_LENGTH / 4 && y > FIELD_HEIGHT / 3) {
-    desiredAngle += LEFT;
-    n++;
-  }
-  //Zone 4
-  else if ( x > FIELD_LENGTH / 4 && y > FIELD_HEIGHT / 3) {
-    desiredAngle += DOWN;
-    n++;
-  }
-  //returns averge angle of zones
-  return (desiredAngle / n);
-}  
 
 float distance(float currX, float currY, float x, float y) {
   float horizontalDistance = pow((currX - x), 2);
